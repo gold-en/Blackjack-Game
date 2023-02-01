@@ -1,3 +1,3 @@
-# A casino BLACKJACK card game
+# A casino BLACKJACK game
 
 This project was created using vanilla JavaScript
