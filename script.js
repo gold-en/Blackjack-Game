@@ -12,7 +12,7 @@ let hasBlackJack = false;
 let isAlive = false;
 let message = '';
 let playerName = '';
-const SCORE = 100;
+const SCORE = 200;
 let playerScore = 200;
 let player = {
   name: '',
@@ -69,7 +69,6 @@ const renderGame = function () {
   }
   if (sum === 21) {
     message = "You've got Blackjack!💥 ";
-
     hasBlackJack = true;
     playerScore += 1000;
     displayPlayersName(playerName, playerScore);
