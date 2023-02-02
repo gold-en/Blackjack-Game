@@ -48,3 +48,30 @@ p {
 .btn:hover {
   color: greenyellow;
 }
+
+.delete-wrapper {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.delete-modal {
+  border-radius: 6px;
+  text-align: center;
+  width: 100%;
+  max-width: 350px;
+  margin: 10% auto;
+  padding: 20px;
+  background-color: white;
+  position: relative;
+}
+.delete-close {
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  cursor: pointer;
+}

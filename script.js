@@ -1,36 +1,84 @@
-let messageEl = document.querySelector('.message-el');
-let sumEl = document.getElementById('sum-el');
-let cardsEl = document.getElementById('cards-el');
-console.log(messageEl);
+'use strict';
 
-let firstCard = 10;
-let secondCard = 4;
-let sum = firstCard + secondCard;
+const messageEl = document.querySelector('.message-el');
+const sumEl = document.getElementById('sum-el');
+const cardsEl = document.getElementById('cards-el');
+const playerEl = document.getElementById('player-el');
+
+console.log(playerEl);
+let cards = [];
+let sum = 0;
 let hasBlackJack = false;
-let isAlive = true;
+let isAlive = false;
 let message = '';
 
-function startGame() {
-  cardsEl.textContent = 'Cards: ' + firstCard + ' ' + secondCard;
-  sumEl.textContent = 'Sum: ' + sum;
+let player = {
+  name: 'per',
+  chips: 100,
+};
 
+playerEl.textContent = player.name + ': $' + player.chips;
+
+function getRandomCard() {
+  let randomNo = Math.floor(Math.random() * 13) + 1;
+  console.log(randomNo);
+  // if 1(ACE = 1 0R 11)          - return 11
+  if (randomNo === 1) return 11;
+
+  // if 11-13 (JACK, QUEEN, KING) - return 10
+  if (randomNo >= 11 && randomNo <= 13) return 10;
+
+  return randomNo;
+}
+
+function startGame() {
+  isAlive = true;
+  let firstCard = getRandomCard();
+  let secondCard = getRandomCard();
+  cards = [firstCard, secondCard];
+  sum = firstCard + secondCard;
+
+  renderGame();
+}
+
+const renderGame = function () {
   if (sum <= 21) {
     message = 'Do you want to draw a new card? ';
   }
   if (sum === 21) {
-    message = "You've got Blackjack ";
+    console.log(sum);
+    message = "You've got Blackjack!💥 ";
     hasBlackJack = true;
-  } else {
-    message = "you're out of the game!";
+  }
+  if (sum >= 22) {
+    message = "you're out of the game! 😢";
     isAlive = false;
   }
+
   messageEl.textContent = message;
-}
+
+  cardsEl.textContent = 'Cards: ';
+
+  for (let i of cards) {
+    cardsEl.textContent += i + ' ';
+  }
+
+  sumEl.textContent = 'Sum: ' + sum;
+};
 
 function newCard() {
-  let card = 7;
-
-  sum += card;
-
-  startGame();
+  if (isAlive && !hasBlackJack) {
+    let card = getRandomCard();
+    sum += card;
+    cards.push(card);
+    console.log(cards);
+    renderGame();
+  }
 }
+
+// const nameInput= document.querySelector('#name
+// function register(event) {
+//   event.preventDefault();
+//   console.log('okay');
+//   document.querySelector('.delete-wrapper').style.display = 'block';
+// }
