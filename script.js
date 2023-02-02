@@ -4,24 +4,42 @@ const messageEl = document.querySelector('.message-el');
 const sumEl = document.getElementById('sum-el');
 const cardsEl = document.getElementById('cards-el');
 const playerEl = document.getElementById('player-el');
+const nameInput = document.querySelector('.name');
 
-console.log(playerEl);
 let cards = [];
 let sum = 0;
 let hasBlackJack = false;
 let isAlive = false;
 let message = '';
-
+let playerName = '';
+const SCORE = 100;
+let playerScore = 200;
 let player = {
-  name: 'per',
-  chips: 100,
+  name: '',
+  chips: playerScore,
 };
 
-playerEl.textContent = player.name + ': $' + player.chips;
+function register(event) {
+  event.preventDefault();
+
+  if (nameInput.value.length) {
+    document.querySelector('.register-wrapper').style.display = 'none';
+
+    playerName = nameInput.value;
+
+    displayPlayersName(playerName, playerScore);
+  }
+}
+
+function displayPlayersName(name, score) {
+  player.name = name;
+  player.chips = score;
+  playerEl.textContent = player.name + ': $' + player.chips;
+}
 
 function getRandomCard() {
   let randomNo = Math.floor(Math.random() * 13) + 1;
-  console.log(randomNo);
+
   // if 1(ACE = 1 0R 11)          - return 11
   if (randomNo === 1) return 11;
 
@@ -37,22 +55,30 @@ function startGame() {
   let secondCard = getRandomCard();
   cards = [firstCard, secondCard];
   sum = firstCard + secondCard;
-
+  player.chips = SCORE;
+  playerName = player.name;
+  playerScore = player.chips;
   renderGame();
 }
 
 const renderGame = function () {
   if (sum <= 21) {
     message = 'Do you want to draw a new card? ';
+    playerScore -= 20;
+    displayPlayersName(playerName, playerScore);
   }
   if (sum === 21) {
-    console.log(sum);
     message = "You've got Blackjack!💥 ";
+
     hasBlackJack = true;
+    playerScore += 1000;
+    displayPlayersName(playerName, playerScore);
   }
   if (sum >= 22) {
     message = "you're out of the game! 😢";
     isAlive = false;
+    playerScore = 0;
+    displayPlayersName(playerName, playerScore);
   }
 
   messageEl.textContent = message;
@@ -71,14 +97,6 @@ function newCard() {
     let card = getRandomCard();
     sum += card;
     cards.push(card);
-    console.log(cards);
     renderGame();
   }
 }
-
-// const nameInput= document.querySelector('#name
-// function register(event) {
-//   event.preventDefault();
-//   console.log('okay');
-//   document.querySelector('.delete-wrapper').style.display = 'block';
-// }

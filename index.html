@@ -9,29 +9,23 @@
   </head>
   <body>
     <div class="container">
-      <div class="modal"></div>
-      <h1>BlackJack</h1>
-      <!-- <button class="register" onclick="register()">Register</button> -->
-      <p class="message-el">Want to play a round?</p>
-      <p id="cards-el">Cards:</p>
-      <p id="sum-el">Sum:</p>
-
+      <div class="content">
+        <h1>BlackJack</h1>
+        <p class="message-el">Want to play a round?</p>
+        <p id="cards-el">Cards:</p>
+        <p id="sum-el">Sum:</p>
+      </div>
       <button onclick="startGame()" class="btn">START GAME</button>
       <button onclick="newCard()" class="btn">NEW CARD</button>
-      <p id="player-el"></p>
+      <p id="player-el" class="content"></p>
 
-      <div class="delete-wrapper">
-        <div class="delete-modal">
-          <div class="delete-close">X</div>
-          <div class="delete-modal-content">
-            <form>
-              <input type="text" placeholder="your name" />
-              <button onclick="register(event)" class="btn btn-yes">
-                  Register
-              </button>
-            </form>
-          </div>
-          </div>
+      <div class="register-wrapper">
+        <div class="register-modal">
+          <h2 style="color: black">Welcome to the casino!</h2>
+          <form>
+            <input class="name" placeholder="your name" />
+            <button class="register" onclick="register(event)">Register</button>
+          </form>
         </div>
       </div>
     </div>
