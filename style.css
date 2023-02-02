@@ -73,9 +73,3 @@ p {
   background-color: white;
   position: relative;
 }
-.delete-close {
-  position: absolute;
-  top: 5px;
-  right: 8px;
-  cursor: pointer;
-}
