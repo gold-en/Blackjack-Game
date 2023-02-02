@@ -75,10 +75,3 @@ function newCard() {
     renderGame();
   }
 }
-
-// const nameInput= document.querySelector('#name
-// function register(event) {
-//   event.preventDefault();
-//   console.log('okay');
-//   document.querySelector('.delete-wrapper').style.display = 'block';
-// }
